@@ -56,7 +56,6 @@
                                             {% else %}
                                             <p>${{detail.price}}</p>
                                             {% endif %}
-
                                         </div>
                                         <div class="quantity">
                                             <h4>Quantity:</h4>
@@ -110,53 +109,58 @@
                                     <div id="description" class="container tab-pane active">
                                         <h4>Product description</h4>
                                         <p>
-                                            {{detail.description}}
+                                            {{detail.discription|safe}}
                                         </p>
                                     </div>
                                     <div id="specification" class="container tab-pane fade">
                                         <h4>Product specification</h4>
                                         <ul>
-                                            {{detail.specification}}
+                                            {{detail.specification|safe}}
                                         </ul>
                                     </div>
                                     <div id="reviews" class="container tab-pane fade">
+                                        {% for rev in reviews %}
                                         <div class="reviews-submitted">
-                                            <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
+                                            <div class="reviewer">{{rev.username}} - <span>01 Jan 2020</span></div>
                                             <div class="ratting">
+                                                {% if rev.star %}
+                                                {% for i in 1|ljust:rev.star %}
                                                 <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                                {% endfor %}
+                                                {% endif%}
                                             </div>
                                             <p>
-                                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+                                                {{rev.review}}
                                             </p>
                                         </div>
+                                        {% endfor %}
+
+                                        {% if user.is_authenticated %}
+                                        <form method = "POST" action = "/review/{{detail.slug}}">
+                                            {% csrf_token %}
                                         <div class="reviews-submit">
                                             <h4>Give your Review:</h4>
-                                            <div class="ratting">
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
+                                            <label for="stars">Review:</label>
+                                              <select name="star" id="stars">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                  <option value="5">5</option>
+                                              </select>
+                                              <br><br>
+
                                             <div class="row form">
-                                                <div class="col-sm-6">
-                                                    <input type="text" placeholder="Name">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="email" placeholder="Email">
+                                                <div class="col-sm-12">
+                                                    <textarea name = "review" placeholder="Review"></textarea>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea placeholder="Review"></textarea>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <button>Submit</button>
+                                                    <button type = "submit">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
+                                        </form>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -323,6 +327,7 @@
                                         <a class="nav-link" href="/category/{{cat.slug}}"><i class="{{cat.icon}}"></i>{{cat.name}}</a>
                                     </li>
                                     {% endfor %}
+                                    
                                 </ul>
                             </nav>
                         </div>
@@ -420,6 +425,7 @@
                                 {% endif %}
                                 {% endfor %}
                                 {% endfor %}
+                                
                             </ul>
                         </div>
                         
