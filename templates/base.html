@@ -31,11 +31,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <i class="fa fa-envelope"></i>
-                        support@email.com
+                        alamirshad297@gmail.com
                     </div>
                     <div class="col-sm-6">
                         <i class="fa fa-phone-alt"></i>
-                        +012-345-6789
+                        +977-9825895064
                     </div>
                 </div>
             </div>
@@ -53,18 +53,18 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link">Products</a>
-                            <a href="product-detail" class="nav-item nav-link">Product Detail</a>
-                            <a href="cart.html" class="nav-item nav-link">Cart</a>
-                            <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                            <a href="my-account.html" class="nav-item nav-link">My Account</a>
+                            <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                            <!-- <a href="{% url 'product-list' %}" class="nav-item nav-link">Products</a> -->
+                            <!-- <a href="product-detail" class="nav-item nav-link">Product Detail</a> -->
+                            <a href="{% url 'cart' %}" class="nav-item nav-link">Cart</a>
+                            <a href="{% url 'checkout' %}" class="nav-item nav-link">Checkout</a>
+                            <a href="{% url 'my-account' %}" class="nav-item nav-link">My Account</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                 <div class="dropdown-menu">
-                                    <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                                    <a href="login.html" class="dropdown-item">Login & Register</a>
-                                    <a href="contact.html" class="dropdown-item">Contact Us</a>
+                                    <a href="{% url 'wishlist' %}" class="dropdown-item">Wishlist</a>
+                                    <!-- <a href="login.html" class="dropdown-item">Login & Register</a> -->
+                                    <a href="{% url 'contact' %}" class="dropdown-item">Contact Us</a>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
 <!-- Footer End -->
 
 <!-- Footer Bottom Start -->
-<div class="footer-bottom">
+<!-- <div class="footer-bottom">
     <div class="container">
         <div class="row">
             <div class="col-md-6 copyright">
@@ -223,7 +223,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Footer Bottom End -->       
 
 <!-- Back to Top -->
