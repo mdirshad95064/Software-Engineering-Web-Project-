@@ -12,4 +12,9 @@ urlpatterns = [
    path('delete_cart/<slug>', delete_cart, name='delete_cart'),
    path('reduce_cart/<slug>', reduce_cart, name='reduce_cart'),
    path('review/<slug>', review, name='review'),
+   path('my-account', MyaccountView.as_view(), name='my-account'),
+   path('product-list', ProductlistView.as_view(), name='product-list'),
+   path('contact', contactus, name='contact'),
+   path('checkout', CheckoutView.as_view(), name='checkout'),
+   path('wishlist', WishlistView.as_view(), name='wishlist'),
 ]

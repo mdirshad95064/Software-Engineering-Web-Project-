@@ -184,6 +184,43 @@ def review(request,slug):
 		data.save()
 		return redirect(f'/detail/{slug}')
 
+class MyaccountView(Base):
+    def get(self,request):
+       
+        return render(request,'my-account.html',self.context)
+    
+class ProductlistView(Base):
+    def get(self,request):
+       
+        return render(request,'product-list.html',self.context)
+    
+class CheckoutView(Base):
+    def get(self,request):
+       
+        return render(request,'checkout.html',self.context)
+    
+class WishlistView(Base):
+    def get(self,request):
+       
+        return render(request,'wishlist.html',self.context)
+    
+
+def contactus(request):
+    if request.method == 'POST':
+       name = request.POST['name']
+       email = request.POST['email']
+       subject = request.POST['subject']
+       message = request.POST['message']
+       data = ContactForm.objects.create(
+           name = name,
+           email = email,
+           subject = subject,
+           message = message
+       )
+       data.save()
+    return render(request,'contact.html')
+
+
 
 #-----------------------------------------------------API------------------------------------------------------------------------
 from django.urls import path, include
